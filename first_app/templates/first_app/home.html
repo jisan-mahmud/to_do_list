@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Home {% endblock title %}
+{% block content %}
+<form style="width: 50%; margin: auto;" method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    {% if template_name != 'modify' %}
+        <button class="btn btn-primary" type="submit">Add Task</button>
+    {% else %}
+        <button class="btn btn-primary" type="submit">Modify</button>
+    {% endif %}
+</form>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Task List{% endblock title %}
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center; background-color: rgb(38, 12, 183); padding: 10px; width: 350px;border-radius: 10px;margin: 10px auto;">Task List</h1>
+    <table class="table table-bordered border-primary">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <th>{{item.title}}</th>
+                <td>{{item.description}}</td>
+                <td>{{item.status}}</td>
+                <td>
+                    <button class="btn btn-danger"><a class="text-decoration-none text-white" href="{% url 'delete' item.id %}">Delete</a></button>
+                    <button class="btn btn-warning"><a class="text-decoration-none text-white" href="{% url 'edit' item.id %}">Edit</a></button>
+                    <button class="btn btn-success"><a class="text-decoration-none text-white" href="{% url 'status' item.id %}">Complete</a></button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endblock content %}
